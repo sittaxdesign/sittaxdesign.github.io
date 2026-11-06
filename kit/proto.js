@@ -46,7 +46,7 @@
   const modos = el('div', 'proto-modos');
   const bSpec = el('button', 'proto-btn', 'Especificação'); bSpec.type = 'button'; bSpec.title = 'Anotações da tela e do fluxo (E)';
   const bInsp = el('button', 'proto-btn', 'Inspecionar'); bInsp.type = 'button'; bInsp.title = 'Componente, medidas e tokens do elemento (I)';
-  const bSair = el('button', 'proto-btn', 'Sair'); bSair.type = 'button'; bSair.title = 'Encerrar a sessão'; bSair.addEventListener('click', () => { if (window.__sair) window.__sair(); }); modos.append(bSpec, bInsp, bSair);
+  const bSair = el('button', 'proto-btn', 'Sair'); bSair.type = 'button'; bSair.title = 'Encerrar a sessão'; bSair.addEventListener('click', () => { if (window.__sair) window.__sair(); }); const bTema = el('button', 'proto-btn', 'Tema'); bTema.type = 'button'; bTema.setAttribute('data-tema-btn', ''); bTema.addEventListener('click', () => { if (window.__alternarTema) window.__alternarTema(); }); modos.append(bSpec, bInsp, bTema, bSair); if (window.__aplicarTema) window.__aplicarTema();
   barra.append(voltar, titulo, status, telas, modos);
   document.body.prepend(barra);
 
