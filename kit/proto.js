@@ -46,7 +46,7 @@
   const modos = el('div', 'proto-modos');
   const bSpec = el('button', 'proto-btn', 'Especificação'); bSpec.type = 'button'; bSpec.title = 'Anotações da tela e do fluxo (E)';
   const bInsp = el('button', 'proto-btn', 'Inspecionar'); bInsp.type = 'button'; bInsp.title = 'Componente, medidas e tokens do elemento (I)';
-  modos.append(bSpec, bInsp);
+  const bSair = el('button', 'proto-btn', 'Sair'); bSair.type = 'button'; bSair.title = 'Encerrar a sessão'; bSair.addEventListener('click', () => { if (window.__sair) window.__sair(); }); modos.append(bSpec, bInsp, bSair);
   barra.append(voltar, titulo, status, telas, modos);
   document.body.prepend(barra);
 
