@@ -218,7 +218,7 @@
     if (f.fsd || catFluxo?.fsd) lk.append(link('Documentação (FSD)', f.fsd || catFluxo.fsd));
     if (f.figma || catFluxo?.figma) lk.append(link('Figma', f.figma || catFluxo.figma));
     if (lk.children.length) conteudo.append(lk);
-    conteudo.append(el('p', 'proto-dica', 'Para revisar, use os comentários do claude.ai nesta página: selecione o trecho ou clique no ícone de comentário. O Claude lê os comentários e ajusta o protótipo.'));
+    conteudo.append(el('p', 'proto-dica', 'Para pedir ajustes neste protótipo, fale com o time de Design.'));
   };
 
   const render = () => {
