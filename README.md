@@ -1,3 +1,3 @@
-# UX Sittax ST
+# Sittax Design/P&D e UX
 
-Página protegida por senha. Conteúdo criptografado; gerado automaticamente a partir do repositório privado.
+Páginas protegidas por senha. Conteúdo criptografado; gerado automaticamente a partir do repositório privado.

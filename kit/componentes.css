@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Espelho HTML/CSS do UI Kit Sittax — cresce a cada protótipo.
+   Regras:
+   - Uma classe por componente do kit, com o MESMO nome (minúsculo): Button-primary -> .button-primary
+   - Variantes como modificadores com o nome da propriedade e valor do Figma:
+       Size=M, Style=Outline -> .button-primary.size-m.style-outline
+       State=Disabled -> [disabled] / [aria-disabled="true"]
+   - Estados :hover / :active SOMENTE a partir das variantes State=Hover / State=Pressed lidas
+     do Figma (anotadas abaixo). Não invente estados.
+   - Só tokens de tokens.css (var(--...)). Exceção: cores internas do kit sem token semântico
+     (primitivos), sempre comentadas com o nome do primitivo.
+   - Nunca altere uma classe existente para "fazer caber" uma tela: se o Figma mudou,
+     atualize a classe a partir do Figma e anote a data.
+   Última leitura do Figma: 2026-10-27.
+   ========================================================================== */
+
+/* --- Base dos botões ------------------------------------------------------------------- */
+.button-primary, .button-secondary {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-tiny);
+  padding: var(--spacing-small); border: var(--border-min) solid transparent; border-radius: var(--radius-tiny);
+  font: 600 14px/16px var(--font-base); white-space: nowrap; cursor: pointer; text-decoration: none;
+  background: transparent;
+}
+.button-primary.size-m, .button-secondary.size-m { height: 40px; min-height: 40px; min-width: 40px; }
+.button-primary.size-l, .button-secondary.size-l { height: 48px; min-height: 48px; }
+.button-primary.size-s, .button-secondary.size-s { height: 32px; min-height: 32px; min-width: 32px; padding: var(--spacing-tiny); }
+.button-primary[aria-disabled="true"], .button-secondary[aria-disabled="true"] { cursor: not-allowed; }
+
+/* --- Button-primary (d585e502…) · Style=Fill --------------------------------------------
+   Default: fill surface/primary, stroke surface/primary, texto typography/white
+   Hover:   fill surface/highlighted, sem stroke, texto typography/highlighted
+   Pressed: fill surface/tertiary, texto typography/contrast
+   Disabled: fill surface/soft, texto typography/disabled                                   */
+.button-primary.style-fill { background: var(--surface-primary); border-color: var(--surface-primary); color: var(--typography-white); }
+.button-primary.style-fill:hover { background: var(--surface-highlighted); border-color: transparent; color: var(--typography-highlighted); }
+.button-primary.style-fill:active { background: var(--surface-tertiary); border-color: transparent; color: var(--typography-contrast); }
+.button-primary.style-fill[aria-disabled="true"] { background: var(--surface-soft); border-color: transparent; color: var(--typography-disabled); }
+
+/* --- Button-primary · Style=Outline ------------------------------------------------------
+   Default: stroke border/primary, texto typography/highlighted
+   Hover:   stroke border/contrast, texto surface/tertiary
+   Pressed: stroke border/pressed-default, texto typography/darker                         */
+.button-primary.style-outline { border-color: var(--border-primary); color: var(--typography-highlighted); }
+.button-primary.style-outline:hover { border-color: var(--border-contrast); color: var(--surface-tertiary); }
+.button-primary.style-outline:active { border-color: var(--border-pressed-default); color: var(--typography-darker); }
+
+/* --- Button-secondary (3a76212e…) · Style=Fill (lido em Size=L) ---------------------------
+   Default: fill surface/soft, texto surface/primary
+   Hover:   fill surface/secondary, texto typography/highlighted
+   Pressed: fill surface/blank, texto typography/darker                                     */
+.button-secondary.style-fill { background: var(--surface-soft); color: var(--surface-primary); }
+.button-secondary.style-fill:hover { background: var(--surface-secondary); color: var(--typography-highlighted); }
+.button-secondary.style-fill:active { background: var(--surface-blank); color: var(--typography-darker); }
+
+/* --- Button-secondary · Style=Outline ------------------------------------------------------
+   Default: fill surface/minimal, stroke border/darker, texto surface/primary
+   Hover:   sem fill, stroke border/highlighted (cor do texto no kit é valor solto: mantida)
+   Pressed: stroke border/darker, texto typography/darker                                   */
+.button-secondary.style-outline { background: var(--surface-minimal); border-color: var(--border-darker); color: var(--surface-primary); }
+.button-secondary.style-outline:hover { background: transparent; border-color: var(--border-highlighted); }
+.button-secondary.style-outline:active { background: transparent; border-color: var(--border-darker); color: var(--typography-darker); }
+
+/* --- Button-pill (a1da727d…) · Type=Outline ---------------------------------------------
+   Default: stroke border/contrast, texto e ícone typography/highlighted · Hover: stroke border/highlighted, typography/soft
+   Raio radius/default, padding spacing/tiny no Size=S (32px). Só ícone = Label desligado.                         */
+.button-pill { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-tiny);
+  padding: var(--spacing-tiny); border: var(--border-min) solid transparent; border-radius: var(--radius-default);
+  font: 600 14px/16px var(--font-base); white-space: nowrap; cursor: pointer; text-decoration: none; background: transparent; }
+.button-pill.size-s { height: 32px; min-height: 32px; min-width: 32px; }
+.button-pill.type-outline { border-color: var(--border-contrast); color: var(--typography-highlighted); }
+.button-pill.type-outline:hover { border-color: var(--border-highlighted); color: var(--typography-soft); }
+/* --- Button-pill-secondary (ea0b7f9c…) · Type=Outline, só ícone (botão fechar do Title-bar)
+   Default: fill surface/minimal, stroke border/darker · Hover: sem fill, stroke border/highlighted
+   Pressed: stroke border/pressed-default                                                   */
+.button-pill-secondary.icon-only {
+  display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px;
+  padding: var(--spacing-small); background: var(--surface-minimal); border: var(--border-min) solid var(--border-darker);
+  border-radius: var(--radius-large); cursor: pointer;
+}
+.button-pill-secondary.icon-only img { width: 24px; height: 24px; }
+.button-pill-secondary.icon-only:hover { background: transparent; border-color: var(--border-highlighted); }
+.button-pill-secondary.icon-only:active { border-color: var(--border-pressed-default); }
+/* Size=M (40px, ícone 16px) — botão voltar do Title-bar (Back button, ícone CaretLeft) */
+.button-pill-secondary.icon-only.size-m { width: 40px; height: 40px; padding: var(--spacing-small); color: var(--typography-highlighted); }
+
+/* --- Link (eb3edbc5…) · Default typography/highlighted · Hover typography/soft · Pressed typography/darker */
+.link { display: inline-flex; align-items: center; gap: var(--spacing-tiny); font: 400 14px/16px var(--font-base);
+  color: var(--typography-highlighted); text-decoration: none; cursor: pointer; background: none; border: 0; padding: 0; }
+.link:hover { color: var(--typography-soft); }
+.link:active { color: var(--typography-darker); }
+.link img { width: 16px; height: 16px; }
+
+/* --- Title-bar (0cceaad5…) · Size=L, Type=Single-line Title no-breadcrumb ----------------- */
+.title-bar { display: flex; align-items: center; justify-content: space-between; height: 48px; width: 100%; gap: var(--spacing-medium); }
+.title-bar .title-text { font: 400 32px/32px var(--font-base); color: var(--typography-primary); margin: 0; white-space: nowrap; }
+
+/* --- Ícones do kit (Phosphor) · Size=L 24px, M 16px -------------------------------------- */
+.kit-icon { display: block; flex-shrink: 0; } .kit-icon.size-l { width: 24px; height: 24px; } .kit-icon.size-m { width: 16px; height: 16px; }
+
+/* --- Tags (419ddb6b…) · Type=Default, Style=Fill ------------------------------------------ */
+.tags { display: inline-flex; align-items: center; justify-content: center; gap: var(--spacing-min); height: 20px; min-width: 20px;
+  padding: 0 var(--spacing-tiny); border-radius: var(--radius-tiny); background: var(--surface-highlighted);
+  font: 400 12px/1.257 var(--font-base); color: var(--typography-darker); white-space: nowrap; }
+.tags img { width: 12px; height: 12px; }
+
+/* --- Steps (1844f28b…) · Type=Steps · Status Active / Inactive / Resolved ---------------- */
+.steps-row { display: flex; align-items: center; justify-content: center; gap: var(--spacing-medium); width: 100%; }
+.step { display: flex; align-items: center; gap: var(--spacing-tiny); font: 600 12px/12px var(--font-base); white-space: nowrap; }
+.step .num { width: 24px; height: 24px; border-radius: 25px; display: flex; align-items: center; justify-content: center; font: 400 12px/1 var(--font-base); }
+.step .num img { width: 12px; height: 12px; }
+.step.status-active .num { background: var(--border-primary); color: var(--typography-contrast); }
+.step.status-active { color: var(--typography-highlighted); }
+.step.status-inactive .num { background: var(--surface-neutral); color: var(--typography-neutral); }
+.step.status-inactive { color: var(--typography-neutral); }
+.step.status-resolved .num { background: #e9ffe3; /* primitivo color/general/opal (sem token semântico) */ }
+.step.status-resolved { color: #00b000; /* primitivo color/general/green (sem token semântico) */ }
+
+/* --- messagebox-horizontal (68edd9d4…) · Type=Info, Style=Content ------------------------- */
+.messagebox-horizontal { display: flex; gap: var(--spacing-medium); align-items: center; width: 100%; padding: var(--spacing-medium);
+  border-radius: var(--radius-default); /* borda interna no Figma: não soma no tamanho */ }
+.messagebox-horizontal.type-info { background: var(--surface-infobox); box-shadow: inset 0 0 0 var(--border-min) var(--border-infobox); }
+.messagebox-horizontal .container { display: flex; flex-direction: column; gap: var(--spacing-tiny); flex: 1; min-width: 0; }
+.messagebox-horizontal .titulo { margin: 0; font: 700 16px/24px var(--font-base); }
+.messagebox-horizontal.type-info .titulo { color: var(--typography-info-dark); }
+.messagebox-horizontal .descricao { margin: 0; font: 400 14px/16px var(--font-base); color: var(--typography-primary); }
+
+/* --- List-item (3bbbfade…) · Type=Normal, State=Default --------------------------------- */
+.list-item { display: flex; align-items: center; gap: var(--spacing-tiny); padding: var(--spacing-tiny); border-radius: var(--radius-tiny); min-width: 0; }
+.list-item .textos { display: flex; flex-direction: column; min-width: 0; }
+.list-item .nome { font: 400 14px/16px var(--font-base); color: var(--typography-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.list-item .descricao { font: 400 12px/1.257 var(--font-base); color: var(--typography-tertiary); height: 13px; } /* altura fixa no kit */
+.list-item.alinhar-direita .textos { text-align: right; }
+
+/* --- Checkbox (4144be43…) / Checkbox-label (132087ef…) · size=L -------------------------
+   Selected: fill surface/primary + check branco · Unchecked: fill surface/soft, stroke border/dark */
+.checkbox-label { display: inline-flex; align-items: center; gap: var(--spacing-tiny); cursor: pointer; font: 400 14px/1.257 var(--font-base); color: var(--typography-primary); user-select: none; position: relative; }
+.checkbox-label input { position: absolute; opacity: 0; pointer-events: none; }
+.checkbox-label .checkbox { position: relative; width: 20px; height: 20px; border-radius: var(--radius-min); background: var(--surface-soft); border: var(--border-min) solid var(--border-dark); flex-shrink: 0; }
+.checkbox-label .checkbox img { position: absolute; left: 1px; top: 1px; width: 16px; height: 16px; opacity: 0; }
+.checkbox-label input:checked + .checkbox { background: var(--surface-primary); border-color: var(--surface-primary); }
+.checkbox-label input:checked + .checkbox img { opacity: 1; }
+.checkbox-label input:focus-visible + .checkbox { border-color: var(--border-info); }
+
+/* --- Card-plano (Hub 4808:72125) · Tipo=Padrão / Recomendado -------------------
+   Componente proposto, ainda não publicado no UI Kit.                                       */
+.card-plano { display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: var(--spacing-medium); /* Figma: alinhamento ao topo, 16 entre conteúdo e botão (ajuste do designer em 2026-10-27) */
+  padding: var(--spacing-medium); border: var(--border-min) solid var(--border-default); border-radius: var(--radius-small);
+  background: var(--surface-default); min-width: 0; }
+.card-plano.tipo-recomendado { border-color: var(--border-primary); }
+.card-plano .conteudo { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-small); width: 100%; text-align: center; }
+.card-plano .selo { height: 20px; display: flex; justify-content: center; width: 100%; }
+.card-plano .quantidade { display: flex; align-items: baseline; gap: var(--spacing-min); color: var(--typography-primary); white-space: nowrap; }
+.card-plano .quantidade .numero { font: 700 40px/0.95 var(--font-base); text-box: trim-both cap alphabetic; }
+.card-plano .quantidade .unidade { font: 400 24px/1.257 var(--font-base); text-box: trim-both cap alphabetic; }
+.card-plano .descricao { margin: 0; font: 400 16px/1.257 var(--font-base); color: var(--typography-primary); }
+.card-plano .preco { margin: 0; font: 400 24px/1.257 var(--font-base); color: var(--typography-primary); text-box: trim-both cap alphabetic; }
+.card-plano .destaque { margin: 0; font: 400 14px/1.257 var(--font-base); color: var(--typography-secondary); }
+.card-plano.tipo-recomendado .quantidade, .card-plano.tipo-recomendado .descricao { color: var(--typography-highlighted); }
+.card-plano .botao { width: 100%; }
+
+/* --- campo de texto (5e7a43a7…) · Type=textfield, Size=M -----------------------------------
+   Default: caixa surface/default + stroke border/dark · Hover: surface/soft + border/darker
+   Focused: sem fill + border/highlighted · Error: border/error, texto typography/error
+   Disabled: surface/soft + border/darker, textos typography/disabled
+   Label typography/secondary 14/16 · valor/placeholder 13/12 · help color/general/blue,
+   erro color/general/red (primitivos, sem token semântico) — lido do Figma em 2026-10-27   */
+.campo-de-texto { display: flex; flex-direction: column; gap: var(--spacing-min); width: 100%; }
+.campo-de-texto .label { font: 400 14px/16px var(--font-base); color: var(--typography-secondary); }
+.campo-de-texto .caixa { display: flex; align-items: center; gap: var(--spacing-tiny); height: 40px; padding: var(--spacing-small);
+  background: var(--surface-default); border: var(--border-min) solid var(--border-dark); border-radius: var(--radius-tiny); }
+.campo-de-texto .caixa input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; padding: 0;
+  font: 400 13px/12px var(--font-base); color: var(--typography-primary); }
+.campo-de-texto .caixa input::placeholder { color: var(--typography-secondary); opacity: 1; }
+.campo-de-texto .caixa:hover { background: var(--surface-soft); border-color: var(--border-darker); }
+.campo-de-texto .caixa:focus-within { background: transparent; border-color: var(--border-highlighted); }
+.campo-de-texto.state-error .caixa { background: transparent; border-color: var(--border-error); }
+.campo-de-texto.state-error .caixa input::placeholder { color: var(--typography-error); }
+.campo-de-texto .aux { display: flex; gap: var(--spacing-tiny); font: 600 12px/12px var(--font-base); }
+.campo-de-texto .aux .ajuda { color: #008ede; /* primitivo color/general/blue */ }
+.campo-de-texto .aux .erro { color: #f23737; /* primitivo color/general/red */ display: none; }
+.campo-de-texto.state-error .aux .erro { display: inline; }
+.campo-de-texto.state-error .aux .ajuda { display: none; }
+.campo-de-texto.size-s .caixa { height: 32px; padding: var(--spacing-tiny) var(--spacing-small); } /* Size=S (Figma: 32px de altura) */
+
+/* --- Chart-progressbar (128f35fc…) · Size=S 8px · M 12px · L 16px ---------------------------
+   Trilho surface/secondary, preenchimento surface/primary, raio 12 (radius/small).
+   No Figma o percentual é a margem direita do trilho; aqui, a largura do preenchimento (--uso). Lido em 2026-10-28 */
+.chart-progressbar { display: block; width: 100%; height: 8px; background: var(--surface-secondary); border-radius: var(--radius-small); overflow: hidden; }
+.chart-progressbar.size-m { height: 12px; } .chart-progressbar.size-l { height: 16px; }
+.chart-progressbar .preenchimento { display: block; height: 100%; width: var(--uso, 50%); background: var(--surface-primary); border-radius: var(--radius-small); }
+
+/* --- Indicador-uso-plano (Hub 4856:1305) · State=Default / Hover -----------------
+   Percentual usado do plano, ao lado do botão de ajuda no Title-bar do Dashboard. Componente proposto.
+   Default: fill surface/default, stroke border/default · Hover: stroke border/highlighted
+   Padding spacing/tiny × spacing/small, raio radius/tiny; info (textos caption + Chart-progressbar S) com 174px + botão Upgrade (Button-pill S Outline) */
+.indicador-uso-plano { display: inline-flex; align-items: center; gap: var(--spacing-tiny); padding: var(--spacing-tiny) var(--spacing-small);
+  background: var(--surface-default); border: var(--border-min) solid var(--border-default); border-radius: var(--radius-tiny);
+  text-decoration: none; cursor: pointer; }
+.indicador-uso-plano:hover, .indicador-uso-plano:focus-visible { border-color: var(--border-highlighted); }
+.indicador-uso-plano .info { display: flex; flex-direction: column; gap: var(--spacing-min); width: 174px; }
+.indicador-uso-plano .textos { display: flex; justify-content: space-between; align-items: center; gap: var(--spacing-tiny);
+  font: 400 12px/1.257 var(--font-base); white-space: nowrap; }
+.indicador-uso-plano .produto { color: var(--typography-secondary); }
+.indicador-uso-plano .percentual { color: var(--typography-highlighted); }
+/* Botão Upgrade (Button-pill Size=S, Type=Outline): só ícone no Default; no Hover mostra "Upgrade" e o componente cresce */
+.indicador-uso-plano .button-pill { gap: 0; transition: gap .2s ease-out, background-color .15s ease, color .15s ease; }
+.indicador-uso-plano .button-pill .texto-botao { color: inherit; max-width: 0; overflow: hidden; opacity: 0; transition: max-width .2s ease-out, opacity .15s ease; }
+.indicador-uso-plano:hover .button-pill, .indicador-uso-plano:focus-visible .button-pill { gap: var(--spacing-tiny);
+  border-color: var(--border-highlighted); color: var(--typography-soft); }
+.indicador-uso-plano:hover .texto-botao, .indicador-uso-plano:focus-visible .texto-botao { max-width: 120px; opacity: 1; }
+.icone-arrow-circle-up { display: inline-block; flex: none; width: 12px; height: 12px; background: currentColor;
+  -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; } /* o fluxo define mask-image com o SVG do ícone (assets/arrow-circle-up.svg) */
+
+/* --- Toggle-button (3dbae935…) · Size=M ---------------------------------------------------
+   Fill surface/neutral-contrast, stroke border/dark; texto typography/primary (Regular)
+   Hover: sem stroke, texto typography/highlighted · Active: texto typography/highlighted (SemiBold)
+   Ponta esquerda e direita com radius/tiny; padding spacing/min
+   Observação: no Sittax Dark o fill continua claro e typography/primary vira branco; aqui o texto usa
+   typography/neutral-dark (o par do fill neutral-contrast) para manter o contraste nos dois temas.   */
+.toggle-group { display: inline-flex; }
+.toggle-button { display: inline-flex; align-items: center; justify-content: center; height: 40px; padding: var(--spacing-min) var(--spacing-small);
+  background: var(--surface-neutral-contrast); border: var(--border-min) solid var(--border-dark); margin-left: calc(-1 * var(--border-min));
+  font: 400 14px/16px var(--font-base); color: var(--typography-neutral-dark); cursor: pointer; }
+.toggle-button:first-child { margin-left: 0; border-radius: var(--radius-tiny) 0 0 var(--radius-tiny); }
+.toggle-button:last-child { border-radius: 0 var(--radius-tiny) var(--radius-tiny) 0; }
+.toggle-button:hover { color: var(--typography-highlighted); }
+.toggle-button[aria-selected="true"] { color: var(--typography-highlighted); font-weight: 600; }
+
+/* --- Ícones do kit (página Ions, Phosphor) usados como máscara: herdam a cor do texto (currentColor) */
+.icone { display: inline-block; flex: none; width: 16px; height: 16px; background: currentColor;
+  -webkit-mask: center / contain no-repeat; mask: center / contain no-repeat; }
+.icone-caret-left { -webkit-mask-image: url(icones/caret-left.svg); mask-image: url(icones/caret-left.svg); }   /* CaretLeft 0a446a50… */
+.icone-notepad { -webkit-mask-image: url(icones/notepad.svg); mask-image: url(icones/notepad.svg); }            /* Notepad 651a6e79… */
+.icone-question-mark { -webkit-mask-image: url(icones/question-mark.svg); mask-image: url(icones/question-mark.svg); } /* QuestionMark 241fa26c… */
+.icone-figma-logo { -webkit-mask-image: url(icones/figma-logo.svg); mask-image: url(icones/figma-logo.svg); }   /* FigmaLogo c26e3ce3… */
+
+/* --- Radio (ce9bf272…) · Label=false ------------------------------------------------------
+   Área 16px, raio 50%, stroke border/dark (1px); marcado: círculo interno de 8px em typography/highlighted */
+.radio { position: relative; display: inline-flex; width: 16px; height: 16px; flex: none; cursor: pointer; }
+.radio input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.radio .area { width: 16px; height: 16px; border-radius: 50%; border: var(--border-min) solid var(--border-dark); display: grid; place-items: center; }
+.radio input:checked + .area::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--typography-highlighted); }
+.radio input:focus-visible + .area { outline: 2px solid var(--border-info); outline-offset: 2px; }
+.radio:hover .area { border-color: var(--border-highlighted); }
+
+/* --- Tabs (9b162773…) · Style=Table-tab ---------------------------------------------------
+   Altura 28px, texto 12px Regular. Inactive: typography/neutral · Hover: typography/soft
+   Active: pílula de 20px, fill surface/primary, texto typography/white, raio 12 · Active-hover: fill surface/secondary, texto typography/highlighted */
+.tabs-table { display: inline-flex; align-items: center; }
+.tab-table { display: inline-flex; align-items: center; height: 28px; padding: 0 var(--spacing-min); background: none; border: 0; cursor: pointer;
+  font: 400 12px/12px var(--font-base); color: var(--typography-neutral); }
+.tab-table > span { display: inline-flex; align-items: center; height: 20px; padding: 0 var(--spacing-tiny); border-radius: 12px; }
+.tab-table:hover { color: var(--typography-soft); }
+.tab-table[aria-selected="true"] > span { background: var(--surface-primary); color: var(--typography-white); }
+.tab-table[aria-selected="true"]:hover > span { background: var(--surface-secondary); color: var(--typography-highlighted); }
+.tab-table:focus-visible { outline: 2px solid var(--border-info); outline-offset: 2px; border-radius: 12px; }
+
+/* --- Tabs (9b162773…) · Style=Primary · Size=M | S ----------------------------------------
+   Contorno border/primary (pontas com radius/medium), padding spacing/min; pílula interna com radius/medium.
+   Size=M: pílula spacing/tiny × spacing/medium (40px) · Size=S: pílula spacing/min × spacing/small (32px)
+   Active: fill surface/primary, texto typography/white · Inactive: texto typography/primary
+   Hover: fill surface/highlighted, texto typography/highlighted · texto 14px SemiBold                   */
+.tabs { display: inline-flex; }
+.tabs .tab { display: inline-flex; padding: var(--spacing-min); background: none; cursor: pointer;
+  border: var(--border-min) solid var(--border-primary); border-left-width: 0; border-right-width: 0;
+  font: 600 14px/16px var(--font-base); color: var(--typography-primary); }
+.tabs .tab:first-child { border-left-width: var(--border-min); border-radius: var(--radius-medium) 0 0 var(--radius-medium); }
+.tabs .tab:last-child { border-right-width: var(--border-min); border-radius: 0 var(--radius-medium) var(--radius-medium) 0; }
+.tabs .tab > span { display: inline-flex; align-items: center; padding: var(--spacing-tiny) var(--spacing-medium); border-radius: var(--radius-medium); }
+.tabs.size-s .tab > span { padding: var(--spacing-min) var(--spacing-small); }
+.tabs .tab:hover > span { background: var(--surface-highlighted); color: var(--typography-highlighted); }
+.tabs .tab[aria-selected="true"] > span { background: var(--surface-primary); color: var(--typography-white); }
+.tabs .tab:focus-visible { outline: 2px solid var(--border-info); outline-offset: 2px; }
