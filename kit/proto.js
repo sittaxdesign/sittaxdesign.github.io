@@ -834,7 +834,9 @@
     if (window.claude && window.claude.use) window.claude.use('db').then((db) => {
       if (db) db.doc('revisoes/' + ids.produto + '--' + ids.fluxo).onSnapshot((d) => { if (d.exists) mostrarStatus(d.data().status); }, () => {});
     }).catch(() => {});
-    render();
+    // a Especificação já abre com o protótipo (em telas estreitas fica fechada, para não cobrir a tela); o botão ou a tecla E fecham
+    if (modo !== 'especificacao' && !modo && document.documentElement.clientWidth >= 900) alternar('especificacao');
+    else render();
     atualizarMapa();
   });
 
