@@ -5,7 +5,10 @@
    (componente, medidas e tokens do elemento). Só tokens do kit.
    ========================================================================== */
 :root { --proto-barra: 56px; --proto-painel: 400px; }
-body { margin: 0; min-height: 100vh; background: var(--surface-blank); color: var(--typography-primary); padding-top: var(--proto-barra); }
+/* O fundo da página é um pouco mais escuro que o da tela (--surface-blank): assim a tela de 1440 parece ter um limite, e não estar cortada */
+:root { --proto-fundo: color-mix(in srgb, var(--surface-blank) 93%, black); }
+html { background: var(--proto-fundo); }
+body { margin: 0; min-height: 100vh; background: var(--proto-fundo); color: var(--typography-primary); padding-top: var(--proto-barra); }
 body.proto-com-painel { padding-right: var(--proto-painel); }
 
 /* Telas */
