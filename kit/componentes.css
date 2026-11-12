@@ -246,9 +246,9 @@
 /* --- Tabs (9b162773…) · Style=Table-tab ---------------------------------------------------
    Altura 28px, texto 12px Regular. Inactive: typography/neutral · Hover: typography/soft
    Active: pílula de 20px, fill surface/primary, texto typography/white, raio 12 · Active-hover: fill surface/secondary, texto typography/highlighted */
-.tabs-table { display: inline-flex; align-items: center; }
+.tabs-table { display: inline-flex; align-items: center; gap: 2px; padding: 2px; background: var(--surface-highlighted); border-radius: 16px; }
 .tab-table { display: inline-flex; align-items: center; height: 28px; padding: 0 var(--spacing-min); background: none; border: 0; cursor: pointer;
-  font: 400 12px/12px var(--font-base); color: var(--typography-neutral); }
+  font: 400 12px/12px var(--font-base); color: color-mix(in srgb, var(--typography-neutral), var(--typography-secondary) 55%); }
 .tab-table > span { display: inline-flex; align-items: center; height: 20px; padding: 0 var(--spacing-tiny); border-radius: 12px; }
 .tab-table:hover { color: var(--typography-soft); }
 .tab-table[aria-selected="true"] > span { background: var(--surface-primary); color: var(--typography-white); }
