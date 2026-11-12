@@ -232,7 +232,6 @@
 .icone-caret-left { -webkit-mask-image: url(icones/caret-left.svg); mask-image: url(icones/caret-left.svg); }   /* CaretLeft 0a446a50… */
 .icone-notepad { -webkit-mask-image: url(icones/notepad.svg); mask-image: url(icones/notepad.svg); }            /* Notepad 651a6e79… */
 .icone-question-mark { -webkit-mask-image: url(icones/question-mark.svg); mask-image: url(icones/question-mark.svg); } /* QuestionMark 241fa26c… */
-.icone-export { -webkit-mask-image: url(icones/export.svg); mask-image: url(icones/export.svg); }   /* Export (Phosphor) */
 .icone-figma-logo { -webkit-mask-image: url(icones/figma-logo.svg); mask-image: url(icones/figma-logo.svg); }   /* FigmaLogo c26e3ce3… */
 
 /* --- Radio (ce9bf272…) · Label=false ------------------------------------------------------
