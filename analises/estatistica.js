@@ -48,5 +48,14 @@ const Estat = (() => {
     const chi = ((n1 - e1) ** 2) / e1 + ((n2 - e2) ** 2) / e2;
     return {chi, p: 1 - erf(Math.sqrt(chi / 2)), alerta: 1 - erf(Math.sqrt(chi / 2)) < 0.001};
   };
-  return {cdf, zInv, amostra, semanas, comparar, srm};
+  // Faixa usual de um indicador acompanhado no tempo (gráfico de processo XmR, Wheeler): média ± 2,66 x amplitude móvel média.
+  // Não é meta: diz se o valor de hoje é variação normal ou mudança real. Com menos de 15 pontos fica "preliminar".
+  const limites = (valores, minimo = 15) => {
+    const v = valores.filter((x) => Number.isFinite(x)); if (v.length < 2) return null;
+    const media = v.reduce((a, b) => a + b, 0) / v.length;
+    const amr = v.slice(1).reduce((a, x, i) => a + Math.abs(x - v[i]), 0) / (v.length - 1);
+    const ultimo = v[v.length - 1], inferior = Math.max(0, media - 2.66 * amr), superior = media + 2.66 * amr;
+    return {n: v.length, media, inferior, superior, ultimo, fora: ultimo < inferior || ultimo > superior, preliminar: v.length < minimo};
+  };
+  return {cdf, zInv, amostra, semanas, comparar, srm, limites};
 })();
