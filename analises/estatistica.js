@@ -24,9 +24,31 @@ const Estat = (() => {
   };
 
   // Duração em semanas COMPLETAS (o comportamento muda por dia da semana)
-  const semanas = ({nPorVariante, variantes = 2, sessoesPorSemana}) => {
-    if (!sessoesPorSemana) return null;
-    return Math.max(1, Math.ceil((nPorVariante * variantes) / sessoesPorSemana));
+  // A unidade é o escritório (diretrizes de teste A/B). `sessoesPorSemana` continua aceito para análises antigas.
+  const semanas = ({nPorVariante, variantes = 2, unidadesPorSemana, sessoesPorSemana}) => {
+    const porSemana = unidadesPorSemana || sessoesPorSemana;
+    if (!porSemana) return null;
+    return Math.max(1, Math.ceil((nPorVariante * variantes) / porSemana));
+  };
+
+  // Nível de evidência pelo volume: até 4 semanas cabe um teste A/B; de 5 a 12, lançamento em ondas com grupo em espera;
+  // acima disso, monitoramento antes e depois.
+  const nivel = (sem) => {
+    if (!sem) return null;
+    if (sem <= 4) return {id: 'ab', texto: 'Cabe como teste A/B por escritório.'};
+    if (sem <= 12) return {id: 'ondas', texto: 'Não cabe em 4 semanas: use lançamento em ondas com grupo em espera (indício, não prova) ou aumente o efeito mínimo.'};
+    return {id: 'monitoramento', texto: 'Volume insuficiente para comparar grupos: use monitoramento antes e depois.'};
+  };
+
+  // Leitura do resultado pela regra de decisão: adotar B quando o intervalo da diferença fica todo do lado bom;
+  // parar quando fica todo do lado ruim; senão, não foi detectada diferença (isso não significa igualdade).
+  // As métricas de proteção são conferidas à parte. `direcao`: 'diminuir' quando menor é melhor.
+  const leitura = ({ic, direcao = 'aumentar'}) => {
+    if (!ic) return null;
+    const bom = direcao === 'diminuir' ? ic[1] < 0 : ic[0] > 0, ruim = direcao === 'diminuir' ? ic[0] > 0 : ic[1] < 0;
+    if (bom) return {id: 'adotar', texto: 'Adotar B, se as métricas de proteção não pioraram.'};
+    if (ruim) return {id: 'pior', texto: 'B piorou a métrica: parar.'};
+    return {id: 'sem-diferenca', texto: 'Diferença não detectada (o intervalo inclui zero): estender, ajustar ou manter A.'};
   };
 
   // Resultado de um teste: duas proporções, com intervalo de confiança da diferença
@@ -57,5 +79,5 @@ const Estat = (() => {
     const ultimo = v[v.length - 1], inferior = Math.max(0, media - 2.66 * amr), superior = media + 2.66 * amr;
     return {n: v.length, media, inferior, superior, ultimo, fora: ultimo < inferior || ultimo > superior, preliminar: v.length < minimo};
   };
-  return {cdf, zInv, amostra, semanas, comparar, srm, limites};
+  return {cdf, zInv, amostra, semanas, nivel, leitura, comparar, srm, limites};
 })();
