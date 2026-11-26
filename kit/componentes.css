@@ -378,3 +378,5 @@
 .messagebox-horizontal.type-error .titulo { color: var(--typography-error-dark); }
 .messagebox-horizontal.type-success { background: var(--surface-successbox); box-shadow: inset 0 0 0 var(--border-min) var(--border-successbox); }
 .messagebox-horizontal.type-success .titulo { color: var(--typography-success-dark); }
+
+.icone-trash { -webkit-mask-image: url(icones/trash.svg); mask-image: url(icones/trash.svg); }   /* Trash (Phosphor); conferir a chave no UI Kit */
