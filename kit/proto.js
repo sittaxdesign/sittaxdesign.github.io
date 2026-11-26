@@ -117,6 +117,34 @@
   };
   window.addEventListener('resize', fit);
 
+  /* ---------- Modal: o fundo escurecido cobre só a tela representada ----------
+     O overlay é fixo na janela; aqui ele é recortado para o retângulo visível da tela ativa
+     (sem a barra superior, o painel lateral e o mapa do fluxo), e o modal fica centralizado nela. */
+  const ajustarOverlays = () => {
+    const aberto = [...document.querySelectorAll('.proto-overlay.is-open')];
+    if (!aberto.length) return;
+    const r = atual().getBoundingClientRect();
+    const barra = document.querySelector('.proto-barra'), mapa = document.querySelector('.proto-mapa');
+    const topo = Math.max(r.top, barra ? barra.getBoundingClientRect().bottom : 0);
+    const mapaTopo = mapa && getComputedStyle(mapa).display !== 'none' ? mapa.getBoundingClientRect().top : window.innerHeight;
+    const base = Math.min(r.bottom, mapaTopo, window.innerHeight);
+    const esq = Math.max(r.left, 0);
+    const dir = Math.min(r.right, document.documentElement.clientWidth - (document.body.classList.contains('proto-com-painel') ? painel.offsetWidth || 400 : 0));
+    aberto.forEach((o) => {
+      o.style.inset = 'auto';
+      o.style.left = esq + 'px'; o.style.top = topo + 'px';
+      o.style.width = Math.max(0, dir - esq) + 'px'; o.style.height = Math.max(0, base - topo) + 'px';
+    });
+  };
+  const observarOverlays = () => {
+    const ob = new MutationObserver(ajustarOverlays);
+    document.querySelectorAll('.proto-overlay').forEach((o) => ob.observe(o, { attributes: true, attributeFilter: ['class'] }));
+  };
+  observarOverlays();
+  window.addEventListener('resize', ajustarOverlays);
+  window.addEventListener('scroll', ajustarOverlays, { passive: true });
+  new MutationObserver(ajustarOverlays).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
   /* ---------- Modos ---------- */
   const alternar = (m) => {
     modo = modo === m ? null : m;

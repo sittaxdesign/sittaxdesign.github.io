@@ -18,6 +18,8 @@ html, body { overflow-x: hidden; }
 [data-goto], [data-open], [data-close] { cursor: pointer; }
 .proto-overlay { position: fixed; inset: 0; background: color-mix(in srgb, var(--typography-black) 50%, transparent); display: none; align-items: center; justify-content: center; z-index: 50; }
 .proto-overlay.is-open { display: flex; }
+/* O modal acompanha a escala da tela representada (a área do overlay é ajustada por proto.js) */
+.proto-overlay > * { zoom: var(--proto-zoom, 1); }
 body.proto-hint [data-goto], body.proto-hint [data-open], body.proto-hint [data-close] { outline: var(--border-medium) solid var(--border-info); outline-offset: 2px; }
 
 /* Barra superior */
