@@ -64,7 +64,7 @@ small { color: var(--typography-secondary); }
 .nav-itens { display: flex; flex-direction: column; gap: var(--spacing-min); padding-bottom: var(--spacing-small); }
 .nav a { padding: var(--spacing-tiny) var(--spacing-small); text-decoration: none; color: var(--typography-primary); }
 .nav a:hover { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); }
-.nav a[aria-current="page"] { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); color: var(--typography-highlighted); font-weight: 600; }
+.nav a[aria-current="page"] { color: var(--typography-highlighted); font-weight: 600; }
 .toc { display: none; }
 .conteudo { padding: var(--spacing-large) var(--grid-margin) var(--spacing-super); min-width: 0; }
 /* só o texto corrido tem largura de leitura; tabelas, cartões e código usam toda a coluna */
