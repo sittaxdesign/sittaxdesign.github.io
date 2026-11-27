@@ -1,0 +1,9 @@
+/* Mandala — grid responsivo (mobile first). GERADO por `npm run tokens:construir`; NÃO editar à mão.
+   Fonte: tokens/layout.tokens.json. Requer tokens.css. Decida o layout pelo espaço disponível, não pelo dispositivo. */
+
+:root { --grid-columns: var(--grid-sm-columns); --grid-margin: var(--grid-sm-margin); --grid-gutter: var(--grid-sm-gutter); }
+@media (min-width: 768px) { :root { --grid-columns: var(--grid-md-columns); --grid-margin: var(--grid-md-margin); --grid-gutter: var(--grid-md-gutter); } }
+@media (min-width: 1024px) { :root { --grid-columns: var(--grid-lg-columns); --grid-margin: var(--grid-lg-margin); --grid-gutter: var(--grid-lg-gutter); } }
+@media (min-width: 1280px) { :root { --grid-columns: var(--grid-xl-columns); --grid-margin: var(--grid-xl-margin); --grid-gutter: var(--grid-xl-gutter); } }
+
+.m-grid { display: grid; grid-template-columns: repeat(var(--grid-columns), minmax(0, 1fr)); column-gap: var(--grid-gutter); padding-inline: var(--grid-margin); }

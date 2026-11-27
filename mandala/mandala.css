@@ -7,19 +7,19 @@ pre { background: var(--surface-soft); border: var(--border-min) solid var(--bor
 pre code { background: none; padding: 0; }
 small { color: var(--typography-secondary); }
 
-.topo { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-medium); padding: var(--spacing-small) var(--spacing-default); background: var(--surface-default); border-bottom: var(--border-min) solid var(--border-default); }
+.topo { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-medium); padding: var(--spacing-small) var(--grid-margin); background: var(--surface-default); border-bottom: var(--border-min) solid var(--border-default); }
 .marca { display: flex; align-items: center; text-decoration: none; }
 .logo { display: block; height: calc(var(--spacing-default) - var(--spacing-min)); width: auto; }
 .logo-escuro { display: none; }
 [data-theme$="dark"] .logo-claro { display: none; }
 [data-theme$="dark"] .logo-escuro { display: block; }
 .topo-acoes { display: flex; gap: var(--spacing-tiny); }
-.botao { height: 40px; padding: 0 var(--spacing-medium); border: var(--border-min) solid var(--border-dark); background: var(--surface-default); color: var(--typography-primary); border-radius: var(--radius-tiny); font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: var(--spacing-tiny); }
+.botao { height: 40px; white-space: nowrap; padding: 0 var(--spacing-small); border: var(--border-min) solid var(--border-dark); background: var(--surface-default); color: var(--typography-primary); border-radius: var(--radius-tiny); font: inherit; cursor: pointer; display: inline-flex; align-items: center; gap: var(--spacing-tiny); }
 .botao:hover { background: var(--surface-soft); }
 .botao[hidden] { display: none; }
 .botao svg { width: 16px; height: 16px; }
 
-.corpo { display: grid; grid-template-columns: 260px minmax(0, 1fr); max-width: 1240px; margin: 0 auto; }
+.corpo { display: grid; grid-template-columns: minmax(0, 1fr); max-width: 1440px; margin: 0 auto; }
 .nav { position: sticky; top: 65px; align-self: start; max-height: calc(100vh - 65px); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium); }
 .nav-grupo { margin-bottom: var(--spacing-default); display: flex; flex-direction: column; gap: 2px; }
 .nav-titulo { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: 0 var(--spacing-small) var(--spacing-tiny); }
@@ -27,7 +27,7 @@ small { color: var(--typography-secondary); }
 .nav a:hover { background: var(--surface-soft); }
 .nav a[aria-current="page"] { background: var(--surface-default); font-weight: 600; box-shadow: inset 3px 0 0 var(--surface-primary); }
 
-.conteudo { padding: var(--spacing-large) var(--spacing-default) var(--spacing-super); max-width: 960px; min-width: 0; }
+.conteudo { padding: var(--spacing-large) var(--grid-margin) var(--spacing-super); max-width: 960px; min-width: 0; }
 .conteudo h1 { font-size: 32px; line-height: 1.2; margin: 0 0 var(--spacing-medium); }
 .conteudo h2 { font-size: 24px; margin: var(--spacing-large) 0 var(--spacing-small); }
 .conteudo h3 { font-size: 18px; margin: var(--spacing-default) 0 var(--spacing-tiny); }
@@ -65,8 +65,33 @@ figcaption { color: var(--typography-secondary); }
 .vazio strong { color: var(--typography-primary); }
 .rodape { padding: var(--spacing-default); text-align: center; color: var(--typography-secondary); font-size: 13px; }
 
-@media (max-width: 800px) {
-  .corpo { grid-template-columns: 1fr; }
-  .nav { position: static; max-height: none; border-bottom: var(--border-min) solid var(--border-default); display: flex; flex-wrap: wrap; gap: var(--spacing-medium); }
-  .nav-grupo { margin: 0; }
+/* nav, conteúdo e "Nesta página": mobile first, com os breakpoints dos tokens (md, lg, xl) */
+.nav { position: static; max-height: none; overflow: visible; display: none; flex-wrap: wrap; gap: var(--spacing-medium); padding: var(--spacing-medium) var(--grid-margin); border-bottom: var(--border-min) solid var(--border-default); }
+.nav.aberta { display: flex; }
+.nav-grupo { margin: 0; }
+.toc { display: none; }
+.botao-menu { display: inline-flex; }
+@media (min-width: 1024px) {
+  .botao-menu { display: none; }
+  .corpo { grid-template-columns: 260px minmax(0, 1fr); }
+  .nav, .nav.aberta { display: block; position: sticky; top: 65px; align-self: start; max-height: calc(100vh - 65px); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium); border-bottom: 0; }
+  .nav-grupo { margin-bottom: var(--spacing-default); }
 }
+@media (min-width: 1280px) {
+  .corpo { grid-template-columns: 260px minmax(0, 1fr) 220px; }
+  .toc { display: flex; flex-direction: column; position: sticky; top: 65px; align-self: start; max-height: calc(100vh - 65px); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium) var(--spacing-default) 0; gap: 2px; }
+}
+@media (max-width: 768px) { .tabela table { font-size: 13px; } }
+
+.toc-titulo { font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding-bottom: var(--spacing-tiny); }
+.toc a { font-size: 13px; padding: var(--spacing-min) var(--spacing-small); border-left: var(--border-medium) solid var(--border-default); text-decoration: none; color: var(--typography-secondary); }
+.toc a:hover { color: var(--typography-primary); border-left-color: var(--border-primary); }
+.toc .toc-n3 { padding-left: var(--spacing-default); }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-small); margin: calc(var(--spacing-small) * -1) 0 var(--spacing-default); font-size: 13px; color: var(--typography-secondary); }
+.estado { padding: 2px var(--spacing-small); border-radius: var(--radius-large); font-weight: 600; font-size: 12px; }
+.estado-rascunho { background: var(--surface-neutral); color: var(--typography-neutral-dark); }
+.estado-em-revisao { background: var(--surface-info); color: var(--typography-info-dark); }
+.estado-estavel { background: var(--surface-success); color: var(--typography-success-dark); }
+.feedback { margin-top: var(--spacing-super); padding: var(--spacing-medium); background: var(--surface-default); border: var(--border-min) solid var(--border-default); border-radius: var(--radius-tiny); font-size: 14px; color: var(--typography-secondary); }
+.feedback strong { color: var(--typography-primary); }
+.conteudo h2, .conteudo h3 { scroll-margin-top: calc(var(--spacing-super) - var(--spacing-default)); }
