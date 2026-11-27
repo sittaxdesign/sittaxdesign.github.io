@@ -238,3 +238,8 @@ figcaption { color: var(--typography-secondary); }
 .mp-nota.erro { border-color: var(--border-error); color: var(--typography-error-dark); }
 .mp-nota.ok { border-color: var(--border-success); color: var(--typography-success-dark); }
 .dd-nao .dd-exemplo .mp-nota:not(.ok) { border-color: var(--border-error); color: var(--typography-error-dark); }
+
+/* boas práticas: cada regra tem um par Faça / Não faça, cada um com o desenho e uma frase */
+.conteudo h4 { margin: var(--spacing-default) 0 var(--spacing-tiny); }
+.dd-texto { margin: var(--spacing-tiny) 0 0; color: var(--typography-primary); }
+.dd-faca > .dd-exemplo, .dd-nao > .dd-exemplo { margin-top: 0; min-height: calc(var(--ds-cel) * 1.4); }
