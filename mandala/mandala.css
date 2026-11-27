@@ -53,15 +53,15 @@ small { color: var(--typography-secondary); }
 .nav.aberta { display: block; }
 .nav, .toc { scrollbar-width: thin; scrollbar-color: var(--border-dark) transparent; }
 /* acordeão da navegação: um grupo aberto por vez (details com o mesmo name) */
-.nav-grupo[open] { background: color-mix(in srgb, var(--typography-primary) 5%, transparent); border-radius: var(--radius-tiny); }
-.nav-grupo { border-bottom: var(--border-min) solid var(--border-smooth); }
-.nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); border-radius: var(--radius-tiny); }
+.nav-grupo[open] { background: color-mix(in srgb, var(--typography-primary) 5%, transparent); }
+.nav-grupo { margin-bottom: var(--spacing-tiny); border-bottom: var(--border-min) solid var(--border-smooth); }
+.nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); }
 .nav-titulo::-webkit-details-marker { display: none; }
 .nav-titulo::after { content: ""; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-right: var(--border-medium) solid currentColor; border-bottom: var(--border-medium) solid currentColor; transform: rotate(45deg); transition: transform 0.15s; }
 .nav-grupo[open] > .nav-titulo::after { transform: rotate(-135deg); }
 .nav-titulo:hover { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); color: var(--typography-primary); }
 .nav-itens { display: flex; flex-direction: column; gap: var(--spacing-min); padding-bottom: var(--spacing-small); }
-.nav a { padding: var(--spacing-tiny) var(--spacing-small); border-radius: var(--radius-tiny); text-decoration: none; color: var(--typography-primary); }
+.nav a { padding: var(--spacing-tiny) var(--spacing-small); text-decoration: none; color: var(--typography-primary); }
 .nav a:hover { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); }
 .nav a[aria-current="page"] { background: var(--surface-default); font-weight: 600; }
 .toc { display: none; }
