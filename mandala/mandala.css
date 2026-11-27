@@ -16,7 +16,9 @@
 /* fim das particularidades */
 
 [hidden] { display: none !important; }
-body { min-height: 100vh; background: var(--surface-blank); color: var(--typography-primary); }
+body { min-height: 100vh; display: flex; flex-direction: column; background: var(--surface-blank); color: var(--typography-primary); }
+.fundo { flex: 1; display: flex; flex-direction: column; }
+.fundo .corpo { flex: 1; width: 100%; }
 a { color: var(--typography-info-dark); }
 a:focus-visible, button:focus-visible { outline: var(--border-strong) solid var(--border-primary); outline-offset: var(--border-medium); }
 code { font-family: var(--ds-mono); font-size: 0.9em; background: var(--surface-soft); border-radius: var(--radius-min); padding: 0 var(--spacing-min); }
