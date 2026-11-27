@@ -289,3 +289,13 @@ figcaption { color: var(--typography-secondary); }
 .mp-tag.desab { background: var(--surface-disabled); color: var(--typography-disabled); }
 .mp-campo.desab > span { background: var(--surface-soft); border-color: var(--border-darker); color: var(--typography-disabled); }
 .mp-caixa.desab { opacity: 0.6; }
+
+/* abas da página do componente: Tabs Style=Secondary do kit (linha embaixo; ativa com traço e texto laranja) */
+.tabs-linha { display: flex; flex-wrap: wrap; margin: var(--spacing-medium) 0 var(--spacing-default); }
+.tabs-linha .tab { position: relative; display: inline-flex; align-items: center; box-sizing: border-box; height: calc(var(--spacing-default) + var(--spacing-small)); padding: 0 var(--spacing-default); border-bottom: var(--border-min) solid var(--border-default); color: var(--typography-neutral); text-decoration: none; }
+.tabs-linha .tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: calc(var(--border-min) * -1); height: var(--border-medium); background: transparent; }
+.tabs-linha .tab:hover { color: var(--typography-soft); }
+.tabs-linha .tab:hover::after { background: var(--border-highlighted); }
+.tabs-linha .tab[aria-current="page"] { color: var(--typography-highlighted); }
+.tabs-linha .tab[aria-current="page"]::after { background: var(--border-primary); }
+.tabs-linha .tab:focus-visible { outline: var(--border-medium) solid var(--border-info); outline-offset: calc(var(--border-medium) * -1); }
