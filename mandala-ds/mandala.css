@@ -260,3 +260,32 @@ figcaption { color: var(--typography-secondary); }
 .mp-marca.erro { background: var(--surface-error-darker); }
 .mp-marca.erro::before { content: "✕"; }
 .mp-ponto { display: inline-block; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-radius: var(--radius-max); background: var(--surface-error); }
+
+/* abas do componente (Tabs Style=Primary do kit, como links) e exemplos */
+.tabs { flex-wrap: wrap; margin: var(--spacing-medium) 0 var(--spacing-default); max-width: 100%; }
+.tabs a.tab { text-decoration: none; color: var(--typography-primary); }
+.tabs .tab[aria-current="page"] > span { background: var(--surface-primary); color: var(--typography-white); }
+.exemplo { margin: 0 0 var(--spacing-medium); }
+.exemplo-previa { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing-small); padding: var(--spacing-default); min-height: calc(var(--ds-cel) * 1.2); background: var(--surface-soft); border: var(--border-min) solid var(--border-default); border-radius: var(--radius-tiny); color: var(--typography-secondary); }
+.exemplo-props { margin: var(--spacing-tiny) 0 0; color: var(--typography-secondary); }
+.exemplo-props > span { font-weight: 600; margin-right: var(--spacing-tiny); }
+.exemplo-texto { margin: var(--spacing-tiny) 0 0; }
+
+/* modificadores extras das peças: tons de status e tamanhos */
+.mp-btn.ok { background: var(--surface-success); border-color: var(--surface-success); color: var(--typography-white); }
+.mp-btn.erro { background: var(--surface-error); border-color: var(--surface-error); color: var(--typography-white); }
+.mp-btn.alerta { background: var(--surface-warning); border-color: var(--surface-warning); color: var(--typography-primary); }
+.mp-btn.info { background: var(--surface-info); border-color: var(--surface-info); color: var(--typography-white); }
+.mp-btn.neutro { background: var(--surface-neutral); border-color: var(--surface-neutral); color: var(--typography-white); }
+.mp-btn.p { padding: 0 var(--spacing-tiny); }
+.mp-btn.g { padding: var(--spacing-tiny) var(--spacing-medium); }
+.mp-campo.p { min-width: var(--ds-cel); }
+.mp-campo.g { min-width: calc(var(--ds-cel) * 2.4); }
+.mp-tag.p { padding: 0 var(--spacing-min); }
+.mp-tag.g { padding: var(--spacing-min) var(--spacing-small); }
+.mp-check.desab, .mp-radio.desab { border-color: var(--surface-disabled); }
+.mp-check.on.desab, .mp-radio.on.desab { background: var(--surface-disabled); }
+.mp-switch.desab { background: var(--surface-disabled); }
+.mp-tag.desab { background: var(--surface-disabled); color: var(--typography-disabled); }
+.mp-campo.desab > span { background: var(--surface-soft); border-color: var(--border-darker); color: var(--typography-disabled); }
+.mp-caixa.desab { opacity: 0.6; }
