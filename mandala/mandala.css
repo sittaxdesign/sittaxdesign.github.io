@@ -57,13 +57,13 @@ small { color: var(--typography-secondary); }
 .nav-grupo { margin-bottom: var(--spacing-tiny); border-radius: var(--radius-tiny); overflow: hidden; }
 .nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); }
 .nav-titulo::-webkit-details-marker { display: none; }
-.nav-titulo::after { content: ""; flex: none; width: var(--spacing-min); height: var(--spacing-min); border-right: var(--border-min) solid var(--typography-tertiary); border-bottom: var(--border-min) solid var(--typography-tertiary); transform: rotate(45deg); transition: transform 0.15s; }
+.nav-titulo::after { content: ""; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-right: var(--border-medium) solid var(--typography-tertiary); border-bottom: var(--border-medium) solid var(--typography-tertiary); transform: rotate(45deg); transition: transform 0.15s; }
 .nav-grupo[open] > .nav-titulo::after { transform: rotate(-135deg); }
 .nav-titulo:hover { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); color: var(--typography-primary); }
 .nav-itens { display: flex; flex-direction: column; gap: var(--spacing-min); padding-bottom: var(--spacing-small); }
 .nav a { padding: var(--spacing-tiny) var(--spacing-small); text-decoration: none; color: var(--typography-primary); }
 .nav a:hover { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); }
-.nav a[aria-current="page"] { background: var(--surface-default); font-weight: 600; }
+.nav a[aria-current="page"] { background: color-mix(in srgb, var(--typography-primary) 6%, transparent); color: var(--typography-highlighted); font-weight: 600; }
 .toc { display: none; }
 .conteudo { padding: var(--spacing-large) var(--grid-margin) var(--spacing-super); min-width: 0; }
 /* só o texto corrido tem largura de leitura; tabelas, cartões e código usam toda a coluna */
