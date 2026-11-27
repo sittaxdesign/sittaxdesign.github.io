@@ -243,3 +243,20 @@ figcaption { color: var(--typography-secondary); }
 .conteudo h4 { margin: var(--spacing-default) 0 var(--spacing-tiny); }
 .dd-texto { margin: var(--spacing-tiny) 0 0; color: var(--typography-primary); }
 .dd-faca > .dd-exemplo, .dd-nao > .dd-exemplo { margin-top: 0; min-height: calc(var(--ds-cel) * 1.4); }
+
+/* peças extras para regras de teclado, foco, leitor de tela e rolagem */
+.mp-tecla { display: inline-flex; align-items: center; padding: 0 var(--spacing-tiny); border: var(--border-min) solid var(--border-dark); border-bottom-width: var(--border-medium); border-radius: var(--radius-min); background: var(--surface-default); color: var(--typography-primary); }
+.foco { outline: var(--border-medium) solid var(--border-info); outline-offset: var(--border-medium); }
+.mp-leitor { display: inline-flex; align-items: center; gap: var(--spacing-min); padding: var(--spacing-min) var(--spacing-tiny); border: var(--border-min) dotted var(--border-gray); border-radius: var(--radius-tiny); background: var(--surface-default); color: var(--typography-primary); font-style: italic; }
+.mp-leitor::before { content: "leitor:"; font-style: normal; color: var(--typography-secondary); }
+.mp-rolagem { display: inline-flex; gap: var(--spacing-min); align-items: stretch; }
+.mp-rolagem > .mp-caixa { flex: 1; }
+.mp-trilho { display: inline-block; flex: none; width: var(--spacing-tiny); min-height: calc(var(--ds-cel) * 1); background: var(--surface-secondary); border-radius: var(--radius-max); position: relative; }
+.mp-trilho::after { content: ""; position: absolute; left: 0; right: 0; top: var(--spacing-min); height: 45%; background: var(--border-dark); border-radius: var(--radius-max); }
+.mp-trilho.oculta { background: transparent; border: var(--border-min) dashed var(--border-dark); }
+.mp-trilho.oculta::after { display: none; }
+.mp-marca { display: inline-flex; align-items: center; justify-content: center; flex: none; width: var(--spacing-medium); height: var(--spacing-medium); border-radius: var(--radius-max); color: var(--typography-white); background: var(--surface-success-darker); }
+.mp-marca::before { content: "✓"; }
+.mp-marca.erro { background: var(--surface-error-darker); }
+.mp-marca.erro::before { content: "✕"; }
+.mp-ponto { display: inline-block; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-radius: var(--radius-max); background: var(--surface-error); }
