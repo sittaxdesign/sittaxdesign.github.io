@@ -54,7 +54,7 @@ small { color: var(--typography-secondary); }
 .nav, .toc { scrollbar-width: thin; scrollbar-color: var(--border-dark) transparent; }
 /* acordeão da navegação: um grupo aberto por vez (details com o mesmo name) */
 .nav-grupo[open] { background: var(--surface-secondary); }
-.nav-grupo { margin-bottom: var(--spacing-tiny); border-bottom: var(--border-min) solid var(--border-smooth); }
+.nav-grupo { margin-bottom: var(--spacing-tiny); border-radius: var(--radius-default); overflow: hidden; }
 .nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); }
 .nav-titulo::-webkit-details-marker { display: none; }
 .nav-titulo::after { content: ""; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-right: var(--border-medium) solid currentColor; border-bottom: var(--border-medium) solid currentColor; transform: rotate(45deg); transition: transform 0.15s; }
