@@ -23,7 +23,8 @@ pre code { background: none; padding: 0; }
 small { color: var(--typography-secondary); }
 
 /* topo */
-.topo { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-medium); padding: var(--spacing-small) var(--grid-margin); background: var(--surface-default); border-bottom: var(--border-min) solid var(--border-default); }
+.topo { position: sticky; top: 0; z-index: 10; background: var(--surface-default); border-bottom: var(--border-min) solid var(--border-default); }
+.topo-in { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-medium); max-width: var(--breakpoint-xxl); margin: 0 auto; padding: var(--spacing-small) var(--grid-margin); }
 .marca { display: flex; align-items: center; text-decoration: none; }
 .logo { display: block; height: calc(var(--spacing-default) - var(--spacing-min)); width: auto; }
 .logo-escuro { display: none; }
@@ -55,7 +56,7 @@ small { color: var(--typography-secondary); }
 @media (min-width: 1024px) {
   .botao-menu { display: none; }
   .corpo { grid-template-columns: var(--ds-nav) minmax(0, 1fr); }
-  .nav, .nav.aberta { display: block; position: sticky; top: var(--ds-topo); align-self: start; max-height: calc(100vh - var(--ds-topo)); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium); border-bottom: 0; }
+  .nav, .nav.aberta { display: block; position: sticky; top: var(--ds-topo); align-self: start; max-height: calc(100vh - var(--ds-topo)); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium) var(--spacing-default) calc(var(--grid-margin) - var(--spacing-small)); border-bottom: 0; }
   .nav-grupo { margin-bottom: var(--spacing-default); }
 }
 @media (min-width: 1280px) {
