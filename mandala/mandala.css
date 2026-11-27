@@ -54,6 +54,7 @@ small { color: var(--typography-secondary); }
 .nav, .toc { scrollbar-width: thin; scrollbar-color: var(--border-dark) transparent; }
 /* acordeão da navegação: um grupo aberto por vez (details com o mesmo name) */
 .nav-grupo[open] { background: color-mix(in srgb, var(--typography-primary) 5%, transparent); }
+.nav-grupo[data-atual] { background: var(--surface-default-hover); }
 .nav-grupo { margin-bottom: var(--spacing-tiny); border-radius: var(--radius-tiny); overflow: hidden; }
 .nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); }
 .nav-titulo::-webkit-details-marker { display: none; }
