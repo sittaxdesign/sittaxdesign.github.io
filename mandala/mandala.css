@@ -34,15 +34,24 @@ small { color: var(--typography-secondary); }
 
 /* esqueleto: mobile first, com os breakpoints dos tokens (lg e xl) */
 .corpo { display: grid; grid-template-columns: minmax(0, 1fr); max-width: var(--breakpoint-xxl); margin: 0 auto; }
-.nav { display: none; flex-wrap: wrap; gap: var(--spacing-medium); padding: var(--spacing-medium) var(--grid-margin); border-bottom: var(--border-min) solid var(--border-default); }
-.nav.aberta { display: flex; }
-.nav-grupo { display: flex; flex-direction: column; gap: var(--spacing-min); }
-.nav-titulo { font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: 0 var(--spacing-small) var(--spacing-tiny); }
+.nav { display: none; padding: var(--spacing-medium) var(--grid-margin); border-bottom: var(--border-min) solid var(--border-default); }
+.nav.aberta { display: block; }
+.nav, .toc { scrollbar-width: thin; scrollbar-color: var(--border-dark) transparent; }
+/* acordeão da navegação: um grupo aberto por vez (details com o mesmo name) */
+.nav-grupo { border-bottom: var(--border-min) solid var(--border-smooth); }
+.nav-titulo { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-small); cursor: pointer; list-style: none; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--typography-secondary); padding: var(--spacing-small); border-radius: var(--radius-tiny); }
+.nav-titulo::-webkit-details-marker { display: none; }
+.nav-titulo::after { content: ""; flex: none; width: var(--spacing-tiny); height: var(--spacing-tiny); border-right: var(--border-medium) solid currentColor; border-bottom: var(--border-medium) solid currentColor; transform: rotate(45deg); transition: transform 0.15s; }
+.nav-grupo[open] > .nav-titulo::after { transform: rotate(-135deg); }
+.nav-titulo:hover { background: var(--surface-soft); color: var(--typography-primary); }
+.nav-itens { display: flex; flex-direction: column; gap: var(--spacing-min); padding-bottom: var(--spacing-small); }
 .nav a { padding: var(--spacing-tiny) var(--spacing-small); border-radius: var(--radius-tiny); text-decoration: none; color: var(--typography-primary); }
 .nav a:hover { background: var(--surface-soft); }
 .nav a[aria-current="page"] { background: var(--surface-default); font-weight: 600; box-shadow: inset var(--border-strong) 0 0 var(--surface-primary); }
 .toc { display: none; }
-.conteudo { padding: var(--spacing-large) var(--grid-margin) var(--spacing-super); max-width: var(--ds-leitura); min-width: 0; }
+.conteudo { padding: var(--spacing-large) var(--grid-margin) var(--spacing-super); min-width: 0; }
+/* só o texto corrido tem largura de leitura; tabelas, cartões e código usam toda a coluna */
+.conteudo > h1, .conteudo > h2, .conteudo > h3, .conteudo > p, .conteudo > ul, .conteudo > ol, .conteudo > blockquote { max-width: var(--ds-leitura); }
 .conteudo h1 { margin: 0 0 var(--spacing-medium); }
 .conteudo h2 { margin: var(--spacing-large) 0 var(--spacing-small); }
 .conteudo h3 { margin: var(--spacing-default) 0 var(--spacing-tiny); }
@@ -56,10 +65,9 @@ small { color: var(--typography-secondary); }
   .topo .botao-menu.icon-only { display: none; }
   .corpo { grid-template-columns: var(--ds-nav) minmax(0, 1fr); }
   .nav, .nav.aberta { display: block; position: sticky; top: var(--ds-topo); align-self: start; max-height: calc(100vh - var(--ds-topo)); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium) var(--spacing-default) calc(var(--grid-margin) - var(--spacing-small)); border-bottom: 0; }
-  .nav-grupo { margin-bottom: var(--spacing-default); }
 }
 @media (min-width: 1280px) {
-  .corpo { grid-template-columns: var(--ds-nav) minmax(0, 1fr) var(--ds-toc); }
+  .corpo.com-toc { grid-template-columns: var(--ds-nav) minmax(0, 1fr) var(--ds-toc); }
   .toc { display: flex; flex-direction: column; position: sticky; top: var(--ds-topo); align-self: start; max-height: calc(100vh - var(--ds-topo)); overflow-y: auto; padding: var(--spacing-default) var(--spacing-medium) var(--spacing-default) 0; gap: var(--spacing-min); }
 }
 
